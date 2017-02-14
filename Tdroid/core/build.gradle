@@ -1,0 +1,94 @@
+apply plugin: 'com.android.library'
+
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs 'src/main/jniLibs'  // 自定义so文件目录
+            jniLibs.srcDirs += 'src/main/jniLibs-um'  // 自定义so文件目录
+            res.srcDirs = [
+                    'src/main/res-um',
+                    'src/main/res',
+                    'src/main/res-ptr'
+                    ]
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(ANDROID_BUILD_TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(ANDROID_VERSION_CODE)
+        versionName ANDROID_VERSION_CODE
+    }
+
+    compileSdkVersion Integer.parseInt(ANDROID_BUILD_COMPILE_SDK_VERSION)
+    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+        }
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    //test
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.orhanobut:logger:1.15'
+    //libs
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //extra
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //ui
+    compile 'com.android.support:cardview-v7:24.+'
+    compile 'com.zhy:autolayout:1.4.5'
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile 'com.jaeger.statusbaruitl:library:1.2.7'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
+    compile 'com.github.hymanme.tagflowlayout:tagflowlayout:0.2.2'
+    compile 'com.youth.banner:banner:1.4.8'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //thirdparts
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.8.0'
+    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile 'jp.wasabeef:recyclerview-animators:2.0.1'
+    //db
+    compile 'org.greenrobot:greendao:3.0.1'
+    //rx
+    compile 'io.reactivex:rxandroid:1.2.0'
+
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+}
+

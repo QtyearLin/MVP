@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <dimen name="banner_title">24dp</dimen>
+    <dimen name="banner_indicator_width">8dp</dimen>
+    <dimen name="banner_indicator_margin">5dp</dimen>
+    <dimen name="item_margin">5dp</dimen>
+    <dimen name="banner_height">450dp</dimen>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/rl_root_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/colorPageBg">
+
+        <LinearLayout
+            android:id="@+id/ll_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPageBg"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+                                               android:id="@+id/tool_bar"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:minHeight="?attr/actionBarSize"
+                                               app:contentInsetStart="0.0dp"
+                                               app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                                               app:theme="@style/ToolbarStyle"/>
+
+
+            <RelativeLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/core_layout_lee"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

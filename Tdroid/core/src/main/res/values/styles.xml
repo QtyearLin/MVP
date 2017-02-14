@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--下拉刷新默认配置-->
+    <style name="Ptr_default">
+        <item name="ptr_duration_to_close">100</item>
+        <item name="ptr_duration_to_close_header">200</item>
+        <item name="ptr_keep_header_when_refresh">true</item> <!--刷新是保持头部-->
+        <item name="ptr_pull_to_fresh">false</item><!--默认为释放刷新-->
+        <item name="ptr_resistance">1.5</item><!-- 阻尼系数默认: 1.7f，越大，感觉下拉时越吃力。-->
+        <item name="ptr_ratio_of_header_height_to_refresh">1</item><!--触发刷新时移动的位置比例-->
+    </style>
+    <!--下拉刷新默认配置-->
+    <style name="Ptr_default_layout_mm" parent="Ptr_default">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+</resources>

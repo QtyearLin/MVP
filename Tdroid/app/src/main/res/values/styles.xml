@@ -1,0 +1,118 @@
+<resources>
+
+    <!-- Base application theme. -->
+
+    <style name="AppTheme" parent="CoreAppTheme">
+        <!--选中状态icon的颜色和字体颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <!--正常状态下字体颜色和icon颜色-->
+        <!--<item name="android:textColorPrimary">@color/colorTheme</item>-->
+    </style>
+
+    <style name="CardViewTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+
+    <!--电影详情页-->
+    <style name="MyScrollPage" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--选中状态icon的颜色和字体颜色-->
+        <item name="colorPrimary">@color/colorTheme</item>
+        <item name="colorPrimaryDark">@color/colorTheme</item>
+        <item name="colorAccent">@color/colorTheme</item>
+    </style>
+
+
+    <!--查看大图页面，全屏显示-->
+    <style name="ViewBigPicTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorTheme</item>
+        <item name="colorPrimaryDark">@color/colorTheme</item>
+        <item name="colorAccent">@color/colorTheme</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+
+    <!--<style name="BottomSheet.StyleDialog" parent="BottomSheet.Dialog">
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:windowAnimationStyle">@style/BottomSheet.Animation</item>
+        <item name="android:textColorPrimary">@color/colorTitle</item>
+        <item name="android:textColorSecondary">@color/colorSubtitle</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColorHint">#42ffffff</item>
+        <item name="bs_dialogBackground">@color/colorWhite</item>
+        <item name="bs_dividerColor">@color/colorLine</item>
+        <item name="bs_numColumns">5</item>
+        <item name="bs_listStyle">@style/BottomSheet.List</item>
+    </style>
+-->
+
+    <style name="AppThemeSystem" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppThemeSystem.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!--  <style name="common_mProgress_circle">
+          <item name="android:indeterminateDuration">900</item>
+          <item name="android:indeterminateDrawable">@drawable/progress_cirle</item>
+          <item name="android:minWidth">30dp</item>
+          <item name="android:minHeight">30dp</item>
+          <item name="android:maxWidth">60dp</item>
+          <item name="android:maxHeight">60dp</item>
+      </style>
+
+      &lt;!&ndash;水平分隔线&ndash;&gt;
+      <style name="horizontalLine">
+          <item name="android:background">@color/colorLineItem</item>
+          <item name="android:layout_height">1px</item>
+          <item name="android:layout_width">match_parent</item>
+      </style>
+
+      &lt;!&ndash;菜单item&ndash;&gt;
+      <style name="menuItem">
+          <item name="android:background">@drawable/ripple_item_white_bg</item>
+          <item name="android:layout_height">50dp</item>
+          <item name="android:layout_width">match_parent</item>
+          <item name="android:gravity">center_vertical</item>
+          <item name="android:paddingLeft">10dp</item>
+          <item name="android:paddingRight">12dp</item>
+          <item name="android:textColor">@color/text_common</item>
+          <item name="android:textSize">16sp</item>
+      </style>-->
+
+    <!--用于项目主页-->
+    <style name="CollapsingToolbarTitleStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="NewsSmmaryPhotoV">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/item_margin</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+
+</resources>

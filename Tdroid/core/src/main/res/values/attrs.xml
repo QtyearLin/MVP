@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StyleEmptyViewControl">
+        <attr name="style_elEmptyLayout"  format="reference"/>
+        <attr name="style_elErrorLayout"  format="reference"/>
+        <attr name="style_elLoadingLayout"  format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="StyleExpandText">
+        <attr name="style_textSize" format="dimension" />
+        <attr name="style_textColor" format="color" />
+        <attr name="style_maxLine" format="integer" />
+        <attr name="style_text" format="string|reference" />
+        <attr name="style_expand" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="google_colors">
+        <item>@android:color/holo_green_light</item>
+        <item>@android:color/holo_blue_bright</item>
+        <item>@android:color/holo_orange_dark</item>
+        <item>@android:color/holo_purple</item>
+    </integer-array>
+</resources>

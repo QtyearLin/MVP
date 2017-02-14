@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TdroidApp</string>
+    <string name="dummy">dump</string>
+    <string name="singapore">sdffa</string>
+    <string name="camera_value">发的发斯蒂芬</string>
+    <string name="camera">发生发的发的发生的</string>
+    <string name="settings">setting</string>
+    <string name="camera_settings">camera_setting</string>
+    <string name="upload">upload</string>
+    <string name="discard">discard</string>
+    <string name="singapore_description"><![CDATA[连锁店O(∩_∩)O嗯!O(∩_∩)O嗯!<(￣︶￣)>o(￣▽￣)do(￣▽￣)do(￣▽￣)do(￣▽￣)do(￣▽￣)d]]></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_tab_1">首页</string>
+    <string name="home_tab_2">展览</string>
+    <string name="home_tab_3">直播</string>
+    <string name="home_tab_4">关注</string>
+    <string name="transition_photos">transition_img</string>
+    <string name="photo_collections"><![CDATA[<string name=\"photo_collections\">图集：%1$s</string>]]></string>
+</resources>

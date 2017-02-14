@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Core</string>
+    <string name="quit_app">再按一次退出程序</string>
+
+    <string name="scroll_aware_behavior" translatable="false">core.base.ScrollAwareFABBehavior</string>
+    <string name="scroll_scale_behavior" translatable="false">core.base.ScrollScaleFABBehavior</string>
+</resources>
