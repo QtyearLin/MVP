@@ -14,6 +14,8 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import core.callback.DiffObserver;
+
 /**
  * Created by Tyearlin on 16/12/10.
  */
@@ -40,8 +42,8 @@ public abstract class BaseMultipleDispatchItemAdapter<T extends MultiItemEntity,
 
     @Override
     public void registerAdapterDataObserver(RecyclerView.AdapterDataObserver observer) {
-//        super.registerAdapterDataObserver(new DiffObserver(observer,getHeaderLayoutCount()));
-        super.registerAdapterDataObserver(observer);
+        super.registerAdapterDataObserver(new DiffObserver(observer,getHeaderLayoutCount()));
+//        super.registerAdapterDataObserver(observer);
     }
 
     @Override

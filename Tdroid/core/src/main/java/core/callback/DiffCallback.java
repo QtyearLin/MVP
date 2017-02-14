@@ -3,6 +3,7 @@ package core.callback;
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,12 +11,14 @@ import java.util.List;
  */
 
 public class DiffCallback<T> extends DiffUtil.Callback {
-    protected List<T> mOldList;
-    protected List<T> mNewList;
+    protected List<T> mOldList = new ArrayList<>();
+    protected List<T> mNewList = new ArrayList<>();
 
     public DiffCallback(List<T> mOldList, List<T> mNewList) {
-        this.mOldList = mOldList;
-        this.mNewList = mNewList;
+        this.mOldList.clear();
+        this.mNewList.clear();
+        this.mOldList.addAll(mOldList);
+        this.mNewList.addAll(mNewList);
     }
 
     @Override
@@ -77,6 +80,7 @@ public class DiffCallback<T> extends DiffUtil.Callback {
 
     /**
      * 返回新老数据改变的item数据对象 bundle 实现局部刷新
+     *
      * @param oldItemPosition
      * @param newItemPosition
      * @return

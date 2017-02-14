@@ -5,10 +5,13 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import core.base.BaseFragment;
 import core.base.BasePresenter;
+import core.utils.LogUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,10 +19,21 @@ import core.base.BasePresenter;
 public abstract class AppBaseFragment<SV extends ViewDataBinding, P extends BasePresenter> extends BaseFragment<SV> {
     protected P mPresenter;
     protected boolean isPrepared = false;
+    protected boolean isLoadFinished = false;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        mPresenter = initPresenter();
+        setUpViews(savedInstanceState);
+        return view;
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        LogUtils.d("onActivityCreated");
         isPrepared = true;
         loadData();
     }
@@ -28,19 +42,37 @@ public abstract class AppBaseFragment<SV extends ViewDataBinding, P extends Base
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter = initPresenter();
-        setUpViews(savedInstanceState);
-//        loadData();
+        LogUtils.d("onViewCreated");
     }
 
     @Override
     protected void onVisible() {
-        if (!isPrepared || !mIsVisible)
+        if (!isPrepared || !mIsVisible || isLoadFinished)
             return;
         super.onVisible();
     }
 
     protected abstract P initPresenter();
+
+
+    protected void setProgress(boolean show, String text, boolean isEmpty) {
+        if (show) {
+            mLEElayout.showLoading(text, isEmpty);
+        } else {
+            mLEElayout.showSuccess();
+        }
+    }
+
+    protected abstract void setUpViews(Bundle savedInstanceState);
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        LogUtils.d("onDestroyView");
+        isPrepared = false;
+        isLoadFinished = false;
+        if (mPresenter != null) mPresenter.detachView();
+    }
 
     /*protected P initPresenter() {
         P instance = null;
@@ -75,22 +107,6 @@ public abstract class AppBaseFragment<SV extends ViewDataBinding, P extends Base
         return instance;
     }
 */
-    protected void setProgress(boolean show, String text, boolean isEmpty) {
-        if (show) {
-            mLEElayout.showLoading(text, isEmpty);
-        } else {
-            mLEElayout.showSuccess();
-        }
-    }
-
-    protected abstract void setUpViews(Bundle savedInstanceState);
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        isPrepared = false;
-        if (mPresenter != null) mPresenter.detachView();
-    }
 
 
 }

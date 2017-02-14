@@ -16,6 +16,7 @@ import java.lang.reflect.Field;
 
 import core.R;
 import core.callback.LEEControl;
+import core.utils.LogUtils;
 import core.view.CoreLEELayout;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -45,13 +46,8 @@ public abstract class BaseFragment<SV extends ViewDataBinding> extends Fragment 
         bindingView.getRoot().setLayoutParams(params);
         mContainer = (RelativeLayout) ll.findViewById(R.id.container);
         mContainer.addView(bindingView.getRoot());
+        initLEE(ll);
         return ll;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initLEE();
     }
 
     /**
@@ -83,11 +79,12 @@ public abstract class BaseFragment<SV extends ViewDataBinding> extends Fragment 
     protected abstract void loadData();
 
     protected void onVisible() {
+        LogUtils.d("onVisible---->loadData");
         loadData();
     }
 
-    private void initLEE() {
-        mLEElayout = getView(R.id.lay_lee);
+    private void initLEE(View ll) {
+        mLEElayout = getView(ll, R.id.lay_lee);
         mLEElayout.bindView(bindingView.getRoot());
         mLEElayout.showLoading();
         // 点击加载失败布局

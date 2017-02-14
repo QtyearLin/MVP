@@ -41,6 +41,7 @@ public class FragmentA extends AppBaseFragment<FragmentTabABinding, FragmentAPre
     private NewsAdapter mAdapter;
     private Banner mBanner;
     private List<String> mBannerImgList = new ArrayList<>();
+    private boolean isRefresh = false;
 
 
     @Override
@@ -59,6 +60,7 @@ public class FragmentA extends AppBaseFragment<FragmentTabABinding, FragmentAPre
         bindingView.ptr.setonRefreshListenner(new PtrRefreshListenner() {
             @Override
             public void onRefresh(PtrFrameLayout frame) {
+                isRefresh = true;
                 mPresenter.loadFeeds("T1348647909107", 0);
             }
         });
@@ -66,8 +68,9 @@ public class FragmentA extends AppBaseFragment<FragmentTabABinding, FragmentAPre
         bindingView.recycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,
                 false));
         mAdapter = new NewsAdapter(mAdapterData);
-        bindingView.recycleView.setAdapter(mAdapter);
         mAdapter.addHeaderView(headView);
+        bindingView.recycleView.setAdapter(mAdapter);
+
     }
 
     private View intHeadView(List<String> images) {
@@ -107,9 +110,19 @@ public class FragmentA extends AppBaseFragment<FragmentTabABinding, FragmentAPre
     @Override
     public void setFeeds(final List<NewsSummary> list) {
         //第二个参数代表是否检测Item的移动
-        diffAdapter(list);
-        bindingView.ptr.refreshComplete();
+        if (isRefresh) {
+            diffAdapter(list.subList(0, 1));
+        } else {
+            diffAdapter(list);
+        }
+        //模拟刷新新数据
+        if (isRefresh) {
+            bindingView.ptr.refreshComplete();
+            isRefresh = false;
+        }
+        isLoadFinished = true;
     }
+
 
     private void diffAdapter(final List<NewsSummary> list) {
         Observable.create(new Observable.OnSubscribe<DiffUtil.DiffResult>() {
