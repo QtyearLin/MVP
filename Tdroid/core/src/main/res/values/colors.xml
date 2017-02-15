@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#00ffffff</color>
+    <color name="colorPrimary">#783232</color>
+    <color name="colorPrimaryDark">#88783232</color>
     <color name="colorAccent">#ffffff</color>
 
-    <color name="colorTheme">#ffffff</color>
+    <color name="colorTheme">#783232</color>
     <color name="colorStatusBarTheme">#11ffffff</color>
     <!--页面背景的颜色-->
     <color name="colorPageBg">#f2f4f5</color>

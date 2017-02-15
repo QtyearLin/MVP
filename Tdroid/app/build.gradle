@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 
 
 android {
@@ -11,15 +11,23 @@ android {
         }
     }
 
-    defaultConfig {
-        minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(ANDROID_BUILD_TARGET_SDK_VERSION)
-        versionCode Integer.parseInt(ANDROID_VERSION_CODE)
-        versionName ANDROID_VERSION_CODE
+    greendao {
+        schemaVersion 1
+        targetGenDir 'src/main/java'
+        daoPackage 'com.greendao.gen'
     }
 
-    compileSdkVersion Integer.parseInt(ANDROID_BUILD_COMPILE_SDK_VERSION)
-    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     dataBinding {
         enabled true
@@ -28,6 +36,7 @@ android {
     buildTypes {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
+
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -46,12 +55,66 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
 
+    // If you need to add more flavors, consider using flavor dimensions.
+    productFlavors {
+        mock {
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+
+        }
+    }
+
+    // Remove mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if (variant.buildType.name.equals('release')
+                && variant.getFlavors().get(0).name.equals('mock')) {
+            variant.setIgnore(true);
+        }
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+        }
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':core')
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
-    compile 'com.android.support:support-v4:24.2.1'
-    testCompile 'junit:junit:4.12'
+    compile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    // Dependencies for local unit tests
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+
+    // required if you want to use Powermock for unit tests
+    testCompile 'org.powermock:powermock-module-junit4:1.5.6'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.5.6'
+    testCompile 'org.powermock:powermock-api-mockito:1.5.6'
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
+
+    // Dependencies for Android unit tests
+    androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
+    androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
 }

@@ -3,6 +3,8 @@ package com.app.design;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.app.design.Contact.TestContract;
@@ -34,7 +36,7 @@ public class MainActivity extends AppBaseActivity<ActivityMainBinding, TestPrese
     }
 
     private void initToolbar() {
-        setToolbarEnable(false);
+        setToolbarEnable(true);
     }
 
 
@@ -129,5 +131,12 @@ public class MainActivity extends AppBaseActivity<ActivityMainBinding, TestPrese
     @Override
     public void showErrorTip(String msg) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
