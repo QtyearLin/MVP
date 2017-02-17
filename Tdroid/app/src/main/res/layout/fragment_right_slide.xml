@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context="com.app.design.ui.FragmentRightSlide">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
+            android:id="@+id/test_tv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/hello_blank_fragment" />
 
-    </FrameLayout>
+        <EditText
+            android:id="@+id/test_edt"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@color/colorRateRed"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/test_btn"
+            android:text="testButton "
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_margin="16dp"
+            android:background="@color/colorRateRed" />
+
+    </LinearLayout>
 </layout>

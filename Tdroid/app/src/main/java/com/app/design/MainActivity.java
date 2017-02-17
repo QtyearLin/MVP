@@ -1,6 +1,7 @@
 package com.app.design;
 
 import android.os.Bundle;
+import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.Menu;
@@ -26,6 +27,7 @@ import rx.functions.Action1;
 
 public class MainActivity extends AppBaseActivity<ActivityMainBinding, TestPresenter> implements TestContract.View {
 
+    private CountingIdlingResource countingIdlingResource;
     @Override
     protected void initViewsAndEvents(Bundle savedInstanceState) {
         initToolbar();
